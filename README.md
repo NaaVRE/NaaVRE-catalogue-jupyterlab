@@ -39,8 +39,14 @@ The `jlpm` command is JupyterLab's pinned version of
 # Change directory to the NaaVRE_catalogue_jupyterlab directory
 
 # Set up a virtual environment and install package in development mode
-python -m venv .venv
-source .venv/bin/activate
+python -m venv venv
+source venv/bin/activate
+
+# Install jupyterlab and refresh the virtual environment
+pip install 'jupyterlab>=4.0.0,<5'
+. venv/bin/activate
+
+# Install package in development mode
 pip install --editable "."
 
 # Link your development version of the extension with JupyterLab
@@ -51,6 +57,18 @@ jupyter labextension develop . --overwrite
 # every time you make a change.
 jlpm build
 ```
+
+This extension communicates with external NaaVRE services. During development, you can run a local version of those services with Docker compose. Initial setup:
+
+1. Copy the Jupyter Lab configuration
+   ```bash
+   mkdir venv/share/jupyter/lab/settings/
+   cp dev/overrides.json venv/share/jupyter/lab/settings/
+   ```
+2. Start docker compose
+   ```bash
+   docker compose -f dev/docker-compose.yaml up
+   ```
 
 You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.
 
