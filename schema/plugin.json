@@ -1,0 +1,8 @@
+{
+  "jupyter.lab.shortcuts": [],
+  "title": "@naavre/catalogue-jupyterlab",
+  "description": "@naavre/catalogue-jupyterlab settings.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}
