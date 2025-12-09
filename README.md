@@ -76,7 +76,7 @@ You can watch the source directory and run JupyterLab at the same time in differ
 # Watch the source directory in one terminal, automatically rebuilding when needed
 jlpm watch
 # Run JupyterLab in another terminal
-jupyter lab
+export $(xargs < dev/jupyterlab.env && jupyter lab --notebook-dir ./notebook-dir
 ```
 
 With the watch command running, every saved change will immediately be built locally and available in your running JupyterLab. Refresh JupyterLab to load the change in your browser (you may need to wait several seconds for the extension to be rebuilt).

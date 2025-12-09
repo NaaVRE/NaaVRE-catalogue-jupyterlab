@@ -132,3 +132,6 @@ dmypy.json
 
 # package manager lock files
 package-lock.json
+
+# Notebook directory for Jupyter Lab in dev mode
+notebook-dir/
