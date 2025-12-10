@@ -135,3 +135,6 @@ package-lock.json
 
 # Notebook directory for Jupyter Lab in dev mode
 notebook-dir/
+
+*storybook.log
+storybook-static

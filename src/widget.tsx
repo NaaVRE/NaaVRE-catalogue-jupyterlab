@@ -2,6 +2,7 @@ import React from 'react';
 import { ReactWidget } from '@jupyterlab/apputils';
 
 import { ISettings, SettingsContext } from './settings';
+import { Catalogue } from './components/catalogue';
 
 export class CatalogueWidget extends ReactWidget {
   settings: ISettings = {};
@@ -19,8 +20,7 @@ export class CatalogueWidget extends ReactWidget {
   render() {
     return (
       <SettingsContext.Provider value={this.settings}>
-        {/*TODO*/}
-        <p>{JSON.stringify(this.settings)}</p>
+        <Catalogue />
       </SettingsContext.Provider>
     );
   }
