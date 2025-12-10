@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
-import { SettingsContext } from '../settings';
+import React from 'react';
+import { Container } from '@mui/material';
 
 export function Catalogue() {
-  const settings = useContext(SettingsContext);
   return (
-    <>
-      {/*TODO*/}
-      <p>{JSON.stringify(settings)}</p>
-    </>
+    <Container
+      sx={{
+        width: '100vw',
+        height: '100vh',
+        padding: '1rem'
+      }}
+    ></Container>
   );
 }

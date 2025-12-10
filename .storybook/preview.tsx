@@ -1,7 +1,9 @@
 import React from 'react';
 import type { Preview } from '@storybook/react-webpack5';
 
+import { ThemeProvider } from '@mui/material/styles';
 import { SettingsContext } from '../src/settings';
+import { theme } from '../src/theme';
 
 const preview: Preview = {
   parameters: {
@@ -26,7 +28,9 @@ const preview: Preview = {
           }}
         >
           <SettingsContext.Provider value={parameters.settings}>
-            <Story />
+            <ThemeProvider theme={theme}>
+              <Story />
+            </ThemeProvider>
           </SettingsContext.Provider>
         </div>
       );
