@@ -138,3 +138,5 @@ notebook-dir/
 
 *storybook.log
 storybook-static
+
+routeTree.gen.ts

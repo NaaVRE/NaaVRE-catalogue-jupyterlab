@@ -2,9 +2,9 @@ import React from 'react';
 import { ReactWidget } from '@jupyterlab/apputils';
 import { ThemeProvider } from '@mui/material/styles';
 
+import { App } from './app';
 import { ISettings, SettingsContext } from './settings';
 import { theme } from './theme';
-import { Catalogue } from './components/catalogue';
 
 export class CatalogueWidget extends ReactWidget {
   settings: ISettings = {};
@@ -23,7 +23,7 @@ export class CatalogueWidget extends ReactWidget {
     return (
       <SettingsContext.Provider value={this.settings}>
         <ThemeProvider theme={theme}>
-          <Catalogue />
+          <App />
         </ThemeProvider>
       </SettingsContext.Provider>
     );

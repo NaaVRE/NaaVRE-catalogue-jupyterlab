@@ -1,7 +1,10 @@
 import React from 'react';
+import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { Container } from '@mui/material';
 
-export function Catalogue() {
+export const Route = createRootRoute({ component: RootLayout });
+
+function RootLayout() {
   return (
     <Container
       sx={{
@@ -9,6 +12,8 @@ export function Catalogue() {
         height: '100vh',
         padding: '1rem'
       }}
-    ></Container>
+    >
+      <Outlet />
+    </Container>
   );
 }
