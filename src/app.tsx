@@ -14,6 +14,9 @@ const router = createRouter({
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
+  // Tanstack router requires `Register` interface, which differs from Jupyter
+  // lab's naming rule. We ignore the rule here to avoid lint errors.
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   interface Register {
     router: typeof router;
   }
