@@ -1,4 +1,5 @@
 import {
+  IRouter,
   JupyterFrontEnd,
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
@@ -12,6 +13,7 @@ import { ISettings } from './settings';
 
 export namespace CommandIDs {
   export const createNew = 'create-catalogue-view';
+  export const openFromUrl = 'open-catalogue-from-url';
 }
 
 /**
@@ -21,11 +23,12 @@ const extension: JupyterFrontEndPlugin<void> = {
   id: '@naavre/catalogue-jupyterlab:plugin',
   description: 'NaaVRE assets catalogue frontend on Jupyter Lab',
   autoStart: true,
-  requires: [ILauncher, ISettingRegistry],
+  requires: [ILauncher, IRouter, ISettingRegistry],
   optional: [ISettingRegistry],
   activate: (
     app: JupyterFrontEnd,
     launcher: ILauncher,
+    router: IRouter,
     settingRegistry: ISettingRegistry | null
   ) => {
     console.log(
@@ -52,6 +55,22 @@ const extension: JupyterFrontEndPlugin<void> = {
         rank: 0
       });
     }
+
+    // Command and route to open widget from URL
+    app.commands.addCommand(CommandIDs.openFromUrl, {
+      label: 'Open assets catalogue from URL',
+      caption: 'Open the catalogue of NaaVRE assets from the URL',
+      icon: args => (args['isPalette'] ? undefined : launcherIcon),
+      execute: args => {
+        if (router.current.hash.match(/^#\/naavre-catalogue/)) {
+          app.commands.execute(CommandIDs.createNew);
+        }
+      }
+    });
+    router.register({
+      command: CommandIDs.openFromUrl,
+      pattern: /lab\/?/
+    });
 
     // Load settings
     function loadSettings(settings: ISettingRegistry.ISettings): void {

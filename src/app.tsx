@@ -1,12 +1,16 @@
 import React, { StrictMode } from 'react';
 import {
-  createMemoryHistory,
+  createHashHistory,
   createRouter,
   RouterProvider
 } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
 
-const router = createRouter({ routeTree, history: createMemoryHistory() });
+const router = createRouter({
+  routeTree,
+  history: createHashHistory(),
+  basepath: 'naavre-catalogue'
+});
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {

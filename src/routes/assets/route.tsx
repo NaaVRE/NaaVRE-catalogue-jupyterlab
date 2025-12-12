@@ -22,7 +22,7 @@ function RouteComponent() {
           Home
         </Button>
         <ToggleButtonGroup
-          value={state.location.href}
+          value={state.location.pathname}
           onChange={(e, href) => navigate({ to: href })}
           exclusive
           aria-label="Asset kind"
