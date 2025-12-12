@@ -12,7 +12,7 @@ import { launcherIcon, tabIcon } from './icons';
 import { ISettings } from './settings';
 
 export namespace CommandIDs {
-  export const createNew = 'create-catalogue-view';
+  export const openOrRestore = 'open-or-restore-catalogue';
   export const openFromUrl = 'open-catalogue-from-url';
 }
 
@@ -36,21 +36,27 @@ const extension: JupyterFrontEndPlugin<void> = {
     );
 
     // Widget tracker
-    const tracker = new WidgetTracker<CatalogueWidget>({
+    const tracker = new WidgetTracker<MainAreaWidget<CatalogueWidget>>({
       namespace: 'naavre-catalogue'
     });
 
     // Widget factory
-    function createNewWidget(settings: Partial<ISettings>): CatalogueWidget {
-      const widget = new CatalogueWidget(settings);
-      tracker.add(widget);
-      return widget;
+    function createNewWidget(
+      settings: Partial<ISettings>
+    ): MainAreaWidget<CatalogueWidget> {
+      const catalogueWidget = new CatalogueWidget(settings);
+      const mainAreaWidget = new MainAreaWidget<CatalogueWidget>({
+        content: catalogueWidget
+      });
+      mainAreaWidget.title.label = 'Assets catalogue';
+      mainAreaWidget.title.icon = tabIcon;
+      return mainAreaWidget;
     }
 
     // Launcher icon
     if (launcher) {
       launcher.add({
-        command: CommandIDs.createNew,
+        command: CommandIDs.openOrRestore,
         category: 'VRE Components',
         rank: 0
       });
@@ -63,7 +69,7 @@ const extension: JupyterFrontEndPlugin<void> = {
       icon: args => (args['isPalette'] ? undefined : launcherIcon),
       execute: args => {
         if (router.current.hash.match(/^#\/naavre-catalogue/)) {
-          app.commands.execute(CommandIDs.createNew);
+          app.commands.execute(CommandIDs.openOrRestore);
         }
       }
     });
@@ -74,7 +80,9 @@ const extension: JupyterFrontEndPlugin<void> = {
 
     // Load settings
     function loadSettings(settings: ISettingRegistry.ISettings): void {
-      tracker.forEach(widget => widget.updateSettings(settings.composite));
+      tracker.forEach(widget =>
+        widget.content.updateSettings(settings.composite)
+      );
     }
     if (settingRegistry) {
       Promise.all([app.restored, settingRegistry.load(extension.id)])
@@ -83,16 +91,18 @@ const extension: JupyterFrontEndPlugin<void> = {
           settings.changed.connect(loadSettings);
 
           // Command
-          app.commands.addCommand(CommandIDs.createNew, {
+          app.commands.addCommand(CommandIDs.openOrRestore, {
             label: 'Assets catalogue',
             caption: 'Catalogue of NaaVRE assets',
             icon: args => (args['isPalette'] ? undefined : launcherIcon),
             execute: args => {
-              const content = createNewWidget(settings.composite);
-              const widget = new MainAreaWidget<CatalogueWidget>({ content });
-              widget.title.label = 'Assets catalogue';
-              widget.title.icon = tabIcon;
-              return app.shell.add(widget, 'main');
+              if (tracker.currentWidget) {
+                app.shell.activateById(tracker.currentWidget.id);
+              } else {
+                const widget = createNewWidget(settings.composite);
+                tracker.add(widget);
+                app.shell.add(widget, 'main');
+              }
             }
           });
         })
