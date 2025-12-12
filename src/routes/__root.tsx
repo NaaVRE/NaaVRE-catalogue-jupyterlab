@@ -37,7 +37,9 @@ function RootLayout() {
       sx={{
         width: '100vw',
         height: '100vh',
-        padding: '1rem'
+        padding: '1rem',
+        color: 'text.primary',
+        bgcolor: 'background.paper'
       }}
     >
       <Outlet />
