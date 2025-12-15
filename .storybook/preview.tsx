@@ -1,11 +1,21 @@
 import React from 'react';
 import type { Preview } from '@storybook/react-webpack5';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { SettingsContext } from '../src/settings';
 import { theme } from '../src/theme';
+import { externalServiceHandlers } from '../src/mocks/handlers';
+
+/*
+ * Initializes MSW
+ * See https://github.com/mswjs/msw-storybook-addon#configuring-msw
+ * to learn how to customize it
+ */
+initialize();
 
 const preview: Preview = {
+  loaders: [mswLoader],
   parameters: {
     controls: {
       matchers: {
@@ -16,6 +26,9 @@ const preview: Preview = {
     settings: {
       virtualLab: 'test-virtual-lab-1',
       catalogueServiceUrl: 'http://localhost:8000'
+    },
+    msw: {
+      handlers: externalServiceHandlers
     }
   },
   decorators: [

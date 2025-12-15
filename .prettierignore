@@ -6,3 +6,4 @@ node_modules
 **/venv
 NaaVRE_catalogue_jupyterlab
 src/routeTree.gen.ts
+public/mockServiceWorker.js

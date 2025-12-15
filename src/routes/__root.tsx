@@ -22,8 +22,6 @@ function RootLayout() {
       location.pathname === '/' &&
       !window.location.hash.startsWith(`#/${basepath}`)
     ) {
-      console.log(status, location, basepath, window.location.hash);
-      console.debug('replacing');
       history.replaceState(
         null,
         '',
