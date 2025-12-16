@@ -6,7 +6,7 @@ import {
   useRouterState
 } from '@tanstack/react-router';
 import { Button, Stack, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { assetKinds } from './-assetKinds';
+import { assetKinds } from '../../components/assets-browser/asset-kinds';
 
 export const Route = createFileRoute('/assets')({
   component: RouteComponent

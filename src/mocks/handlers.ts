@@ -3,6 +3,10 @@ import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab/
 import { getCellsList, patchCell } from './catalogue-service/workflow-cells';
 import { getSharingScopesList } from './catalogue-service/sharing-scopes';
 import { getUsersList } from './catalogue-service/users';
+import {
+  getNotebooksList,
+  patchNotebook
+} from './catalogue-service/notebook-files';
 
 function getExternalServiceHandler(
   method: string,
@@ -51,6 +55,24 @@ export const externalServiceHandlers = [
       'http://localhost:8000',
       '/users/',
       getUsersList
+    )
+  ),
+  http.post(
+    '/naavre-communicator/external-service',
+    getExternalServiceHandler(
+      'GET',
+      'http://localhost:8000',
+      '/notebook-files/',
+      getNotebooksList
+    )
+  ),
+  http.post(
+    '/naavre-communicator/external-service',
+    getExternalServiceHandler(
+      'PATCH',
+      'http://localhost:8000',
+      '/notebook-files/*/',
+      patchNotebook
     )
   ),
   http.post(

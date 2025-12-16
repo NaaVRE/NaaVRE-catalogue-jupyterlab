@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Stack, Typography } from '@mui/material';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 
-import { AssetKind, assetKinds } from './assets/-assetKinds';
+import { AssetKind, assetKinds } from '../components/assets-browser/asset-kinds';
 
 export const Route = createFileRoute('/')({
   component: Launcher
