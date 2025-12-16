@@ -1,5 +1,6 @@
 import { NaaVREExternalService } from '@naavre/communicator-jupyterlab';
 import { ceil } from 'lodash';
+import { IBaseAsset } from '../types/NaaVRECatalogue/assets';
 
 export interface ICatalogueListResponse<T> {
   count: number;
@@ -83,4 +84,14 @@ export async function fetchListFromCatalogue<T>(
     }
     return content;
   }
+}
+
+export async function deleteAssetFromCatalogue(asset: IBaseAsset) {
+  const resp = await NaaVREExternalService('DELETE', asset.url, {
+    accept: 'application/json'
+  });
+  if (resp.status_code !== 204) {
+    throw `${resp.status_code} ${resp.reason}`;
+  }
+  return JSON.parse(resp.content);
 }

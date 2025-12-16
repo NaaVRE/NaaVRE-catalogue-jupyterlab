@@ -33,7 +33,7 @@ function RouteComponent() {
               value={`/assets/${assetKind.slug}`}
               aria-label="left aligned"
             >
-              {assetKind.title}
+              {assetKind.namePlural}
             </ToggleButton>
           ))}
         </ToggleButtonGroup>

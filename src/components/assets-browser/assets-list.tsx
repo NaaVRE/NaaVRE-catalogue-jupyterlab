@@ -1,51 +1,62 @@
 import React, { ReactNode } from 'react';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 import { ListItem, LoadingListItem } from './list-item';
-import { Stack, Typography } from '@mui/material';
-import { IBaseAsset } from '../../types/NaaVRECatalogue/BaseAssets';
+import { Asset, AssetKind } from './asset-kinds';
 
 export function AssetsList({
   assets,
-  loading,
-  message,
+  assetKind,
   fetchAssetsListResponse,
-  button,
-  filter,
   pageNav
 }: {
-  assets: Array<IBaseAsset>;
-  loading: boolean;
-  message: string | null;
+  assets: Array<Asset>;
+  assetKind: AssetKind;
   fetchAssetsListResponse: () => void;
-  button?: ReactNode;
-  filter?: ReactNode;
   pageNav?: ReactNode;
 }) {
+  if (!assets.length) {
+    return <Alert severity="info">No {assetKind.namePlural} to display.</Alert>;
+  }
+
   return (
-    <Stack>
-      {filter && filter}
-      {button && button}
-      <>
-        {loading ? (
-          <>
-            <LoadingListItem />
-            <LoadingListItem />
-          </>
-        ) : (
-          <>
-            {message !== null && (
-              <Typography variant="body1">{message}</Typography>
-            )}
-            {assets.map(asset => (
-              <ListItem
-                asset={asset}
-                fetchAssetsListResponse={fetchAssetsListResponse}
-              />
-            ))}
-          </>
-        )}
-      </>
+    <Stack spacing={3}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Title</TableCell>
+            {'version' in assets[0] && <TableCell>Version</TableCell>}
+            <TableCell>Owner</TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {assets.map(asset => (
+            <ListItem
+              asset={asset}
+              assetKind={assetKind}
+              fetchAssetsListResponse={fetchAssetsListResponse}
+            />
+          ))}
+        </TableBody>
+      </Table>
       {pageNav && pageNav}
+    </Stack>
+  );
+}
+
+export function LoadingAssetsList() {
+  return (
+    <Stack sx={{ marginTop: '56px' }}>
+      <LoadingListItem />
+      <LoadingListItem />
+      <LoadingListItem />
     </Stack>
   );
 }

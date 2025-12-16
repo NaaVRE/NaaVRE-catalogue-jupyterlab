@@ -14,13 +14,14 @@ import FormGroup from '@mui/material/FormGroup';
 import LinearProgress from '@mui/material/LinearProgress';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { SxProps } from '@mui/material/styles';
+import { NaaVREExternalService } from '@naavre/communicator-jupyterlab';
 
 import { useSharingScopeCheckboxes } from '../../hooks/use-sharing-scope-checkboxes';
 import { fetchListFromCatalogue } from '../../utils/catalog';
 import { SettingsContext } from '../../settings';
-import { IBaseAsset, IUser } from '../../types/NaaVRECatalogue/BaseAssets';
-import { NaaVREExternalService } from '@naavre/communicator-jupyterlab';
-import { SxProps } from '@mui/material/styles';
+import { Asset } from './asset-kinds';
+import { IUser } from '../../types/NaaVRECatalogue/assets';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
@@ -122,7 +123,7 @@ export function ShareDialog({
   open: boolean;
   onClose: () => void;
   onUpdated: () => void;
-  asset: IBaseAsset;
+  asset: Asset;
   readonly: boolean;
 }) {
   const [usernames, setUsernames] = useState<string[]>(
@@ -228,9 +229,7 @@ export function ShareDialog({
         {loading && <LinearProgress sx={{ mt: 2 }} />}
       </DialogContent>
       <DialogActions>
-        <Button color="secondary" onClick={onClose}>
-          Cancel
-        </Button>
+        <Button onClick={onClose}>Cancel</Button>
         <Button
           disabled={readonly}
           onClick={async () => {

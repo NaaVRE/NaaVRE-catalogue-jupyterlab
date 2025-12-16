@@ -1,27 +1,35 @@
+import {
+  INotebookFile,
+  IWorkflowCell,
+  IWorkflowFile
+} from '../../types/NaaVRECatalogue/assets';
+
+export type Asset = INotebookFile | IWorkflowCell | IWorkflowFile;
+
 export type AssetKind = {
-  title: string;
+  name: string;
+  namePlural: string;
   slug: string;
   cataloguePath: string;
-  isFileAsset: boolean;
 };
 
 export const assetKinds: AssetKind[] = [
   {
-    title: 'Notebook Files',
+    name: 'notebook file',
+    namePlural: 'notebook file',
     slug: 'notebook-files',
-    cataloguePath: 'notebook-files',
-    isFileAsset: true
+    cataloguePath: 'notebook-files'
   },
   {
-    title: 'Workflow components',
+    name: 'workflow component',
+    namePlural: 'workflow component',
     slug: 'workflow-cells',
-    cataloguePath: 'workflow-cells',
-    isFileAsset: false
+    cataloguePath: 'workflow-cells'
   },
   {
-    title: 'Workflow files',
+    name: 'workflow file',
+    namePlural: 'workflow file',
     slug: 'workflow-files',
-    cataloguePath: 'workflow-files',
-    isFileAsset: true
+    cataloguePath: 'workflow-files'
   }
 ];

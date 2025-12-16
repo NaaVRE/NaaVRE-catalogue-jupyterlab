@@ -4,6 +4,7 @@ import { getCellsList, patchCell } from './catalogue-service/workflow-cells';
 import { getSharingScopesList } from './catalogue-service/sharing-scopes';
 import { getUsersList } from './catalogue-service/users';
 import {
+  deleteNotebook,
   getNotebooksList,
   patchNotebook
 } from './catalogue-service/notebook-files';
@@ -73,6 +74,15 @@ export const externalServiceHandlers = [
       'http://localhost:8000',
       '/notebook-files/*/',
       patchNotebook
+    )
+  ),
+  http.post(
+    '/naavre-communicator/external-service',
+    getExternalServiceHandler(
+      'DELETE',
+      'http://localhost:8000',
+      '/notebook-files/*/',
+      deleteNotebook
     )
   ),
   http.post(

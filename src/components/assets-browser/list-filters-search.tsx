@@ -57,11 +57,7 @@ export function ListFiltersSearch({
         '& .MuiInputBase-root': {
           borderRadius: '100px'
         },
-        width: '100%',
-        '&:focus-within': {
-          flexShrink: 0
-        },
-        transition: 'all 0.5s ease'
+        width: '100%'
       }}
     />
   );

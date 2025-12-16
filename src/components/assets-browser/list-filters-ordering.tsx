@@ -3,13 +3,14 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
+import Tooltip from '@mui/material/Tooltip';
 import { updateSearchParams } from './list-filters';
 
 const orderingOptions = [
   { value: 'created', title: 'First created' },
   { value: '-created', title: 'Last created' },
   { value: 'title', title: 'A-Z' },
-  { value: '-title', title: 'Z-A' }
+  { value: '-name', title: 'Z-A' }
 ];
 
 export function ListFiltersOrdering({
@@ -33,19 +34,21 @@ export function ListFiltersOrdering({
 
   return (
     <>
-      <IconButton
-        id="ordering-button"
-        aria-label="ordering"
-        aria-controls={open ? 'ordering-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
-        aria-haspopup="true"
-        style={{
-          borderRadius: '100%'
-        }}
-        onClick={e => setAnchorEl(e.currentTarget)}
-      >
-        <SwapVertIcon />
-      </IconButton>
+      <Tooltip title="Order">
+        <IconButton
+          id="ordering-button"
+          aria-label="Order"
+          aria-controls={open ? 'ordering-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup="true"
+          style={{
+            borderRadius: '100%'
+          }}
+          onClick={e => setAnchorEl(e.currentTarget)}
+        >
+          <SwapVertIcon />
+        </IconButton>
+      </Tooltip>
       <Menu
         id="ordering-menu"
         anchorEl={anchorEl}

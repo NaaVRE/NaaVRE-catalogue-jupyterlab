@@ -1,13 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ISettings } from '../settings';
-import { ICatalogueListResponse } from '../utils/catalog';
-import { fetchListFromCatalogue } from '../utils/catalog';
+import {
+  fetchListFromCatalogue,
+  ICatalogueListResponse
+} from '../utils/catalog';
 
 function getInitialUrl(settings: ISettings, initialPath: string) {
   return settings.catalogueServiceUrl
     ? `${settings.catalogueServiceUrl}/${initialPath}`
     : null;
 }
+
+const emptyResponse = {
+  count: 0,
+  next: null,
+  previous: null,
+  results: []
+};
 
 export function useCatalogueList<T>({
   settings,
@@ -37,12 +46,8 @@ export function useCatalogueList<T>({
       setUrl(`${settings.catalogueServiceUrl}/${initialPath}`);
   }, [settings.catalogueServiceUrl]);
 
-  const [response, setResponse] = useState<ICatalogueListResponse<T>>({
-    count: 0,
-    next: null,
-    previous: null,
-    results: []
-  });
+  const [response, setResponse] =
+    useState<ICatalogueListResponse<T>>(emptyResponse);
 
   const fetchResponse = useCallback(() => {
     setErrorMessage && setErrorMessage(null);
@@ -56,6 +61,7 @@ export function useCatalogueList<T>({
           const msg = `Error listing items: ${String(error)}`;
           console.error(msg);
           setErrorMessage && setErrorMessage(msg);
+          setResponse(emptyResponse);
         })
         .finally(() => {
           setLoading && setLoading(false);

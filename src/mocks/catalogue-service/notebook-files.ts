@@ -1,8 +1,12 @@
 import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab/lib/handler';
-import { IFileAsset } from '../../types/NaaVRECatalogue/FileAssets'; // FIXME should be @naavre/communicator-jupyter
+
+import {
+  IFileAsset,
+  IVersioningMixin
+} from '../../types/NaaVRECatalogue/assets'; // FIXME should be @naavre/communicator-jupyter
 
 // FIXME: make it realistic
-export const notebooks: IFileAsset[] = [
+export const notebooks: (IFileAsset & IVersioningMixin)[] = [
   {
     url: 'http://localhost:8000/notebook-files/cbd0bc89-7418-4536-a8c4-6eb3bb6bf2e6/',
     owner: 'fixture-user-1',
@@ -13,6 +17,8 @@ export const notebooks: IFileAsset[] = [
     description: 'Description of nb-shared-with-community',
     created: '2025-09-19T18:48:23.397000Z',
     modified: '2025-09-19T18:48:23.397000Z',
+    version: 1,
+    next_version: null,
     file: ''
   },
   {
@@ -25,6 +31,8 @@ export const notebooks: IFileAsset[] = [
     description: 'Description of nb-shared-with-vl-1',
     created: '2025-09-19T18:48:23.397000Z',
     modified: '2025-09-19T18:48:23.397000Z',
+    version: 1,
+    next_version: null,
     file: ''
   },
   {
@@ -37,6 +45,8 @@ export const notebooks: IFileAsset[] = [
     description: 'Description of nb-shared-with-vl-2',
     created: '2025-09-19T18:48:23.397000Z',
     modified: '2025-09-19T18:48:23.397000Z',
+    version: 1,
+    next_version: null,
     file: ''
   },
   {
@@ -49,6 +59,8 @@ export const notebooks: IFileAsset[] = [
     description: 'Description of nb-shared-with-user',
     created: '2025-09-19T18:48:23.397000Z',
     modified: '2025-09-19T18:48:23.397000Z',
+    version: 1,
+    next_version: null,
     file: ''
   },
   {
@@ -61,6 +73,22 @@ export const notebooks: IFileAsset[] = [
     description: 'Description of other-vl-nb-1-test-user-2',
     created: '2025-01-19T21:40:23.503000Z',
     modified: '2025-01-19T21:40:23.503000Z',
+    version: 1,
+    next_version: null,
+    file: ''
+  },
+  {
+    url: 'http://localhost:8000/notebook-files/57c32902-cd0b-4c59-8307-08456e4bfe30/',
+    owner: 'test-user-2',
+    virtual_lab: 'test-virtual-lab-1',
+    shared_with_scopes: ['test-virtual-lab-1'],
+    shared_with_users: [],
+    title: 'test-nb-3-test-user-2',
+    description: 'Description of test-nb-3-test-user-2',
+    created: '2025-01-19T21:37:23.503000Z',
+    modified: '2025-01-19T21:37:23.503000Z',
+    version: 1,
+    next_version: null,
     file: ''
   },
   {
@@ -74,6 +102,8 @@ export const notebooks: IFileAsset[] = [
       'Description of test-nb-2-with-a-looooooooooooooong-name-test-user-2',
     created: '2025-01-19T21:39:53.924000Z',
     modified: '2025-01-19T21:39:53.924000Z',
+    version: 1,
+    next_version: null,
     file: ''
   },
   {
@@ -86,6 +116,8 @@ export const notebooks: IFileAsset[] = [
     description: 'Description of test-nb-1-test-user-2',
     created: '2025-01-19T21:37:23.503000Z',
     modified: '2025-01-19T21:37:23.503000Z',
+    version: 1,
+    next_version: null,
     file: ''
   },
   {
@@ -98,6 +130,8 @@ export const notebooks: IFileAsset[] = [
     description: 'Description of test-nb-1-test-user-2',
     created: '2025-01-19T21:38:23.503000Z',
     modified: '2025-01-19T21:37:23.503000Z',
+    version: 1,
+    next_version: null,
     file: ''
   }
 ];
@@ -130,5 +164,18 @@ export async function patchNotebook(
       'content-type': 'application/json'
     },
     content: JSON.stringify(notebooks[0])
+  };
+}
+
+export async function deleteNotebook(
+  request: Request
+): Promise<INaaVREExternalServiceResponse> {
+  return {
+    status_code: 204,
+    reason: 'OK',
+    headers: {
+      'content-type': 'application/json'
+    },
+    content: JSON.stringify({})
   };
 }

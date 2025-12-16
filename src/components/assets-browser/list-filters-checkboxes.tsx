@@ -5,6 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import IconButton from '@mui/material/IconButton';
 import Popover from '@mui/material/Popover';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 import { updateSearchParams } from './list-filters';
@@ -92,16 +93,18 @@ export function ListFiltersCheckboxes({
 
   return (
     <>
-      <IconButton
-        aria-describedby={id}
-        aria-label="checkbox-filters"
-        style={{
-          borderRadius: '100%'
-        }}
-        onClick={e => setAnchorEl(e.currentTarget)}
-      >
-        <FilterListIcon />
-      </IconButton>
+      <Tooltip title="Filters">
+        <IconButton
+          aria-describedby={id}
+          aria-label="Filters"
+          style={{
+            borderRadius: '100%'
+          }}
+          onClick={e => setAnchorEl(e.currentTarget)}
+        >
+          <FilterListIcon />
+        </IconButton>
+      </Tooltip>
       <Popover
         id={id}
         open={open}

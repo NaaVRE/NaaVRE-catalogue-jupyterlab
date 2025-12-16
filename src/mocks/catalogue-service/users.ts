@@ -1,5 +1,5 @@
 import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab/lib/handler'; // FIXME should be @naavre/communicator-jupyter
-import { IUser } from '../../types/NaaVRECatalogue/BaseAssets';
+import { IUser } from '../../types/NaaVRECatalogue/assets';
 
 export const users: IUser[] = [
   {

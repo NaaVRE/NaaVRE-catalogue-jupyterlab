@@ -1,21 +1,34 @@
 import React, { useContext, useEffect } from 'react';
+import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import Stack from '@mui/material/Stack';
+import Tooltip from '@mui/material/Tooltip';
 
-import { AssetsList } from './assets-list';
-import { PageNav } from './page-nav';
+import { Asset, AssetKind } from './asset-kinds';
+import { AssetsList, LoadingAssetsList } from './assets-list';
+import { ISharingScope } from '../../types/NaaVRECatalogue/assets';
 import { ListFilters } from './list-filters';
+import { PageNav } from './page-nav';
 import { SettingsContext } from '../../settings';
-import { useCatalogueList } from '../../hooks/use-catalogue-list';
-import {
-  IBaseAsset,
-  ISharingScope
-} from '../../types/NaaVRECatalogue/BaseAssets';
 import { SharingScopesContext } from '../../contexts/SharingScopesContext';
-import { useUserInfo } from '../../hooks/use-user-info';
 import { UserInfoContext } from '../../contexts/UserInfoContext';
-import { AssetKind } from './asset-kinds';
+import { useCatalogueList } from '../../hooks/use-catalogue-list';
+import { useUserInfo } from '../../hooks/use-user-info';
+
+function RefreshButton({ onClick }: { onClick: () => void }) {
+  return (
+    <Tooltip title="Refresh">
+      <IconButton
+        aria-label="Refresh"
+        style={{ borderRadius: '100%' }}
+        onClick={onClick}
+      >
+        <RefreshIcon />
+      </IconButton>
+    </Tooltip>
+  );
+}
 
 export function AssetsBrowser({ assetKind }: { assetKind: AssetKind }) {
   const settings = useContext(SettingsContext);
@@ -26,7 +39,7 @@ export function AssetsBrowser({ assetKind }: { assetKind: AssetKind }) {
     errorMessage,
     fetchResponse: fetchAssetsListResponse,
     response: assetsListResponse
-  } = useCatalogueList<IBaseAsset>({
+  } = useCatalogueList<Asset>({
     settings,
     initialPath: `${assetKind.cataloguePath}/?ordering=-created`
   });
@@ -46,36 +59,37 @@ export function AssetsBrowser({ assetKind }: { assetKind: AssetKind }) {
   return (
     <SharingScopesContext.Provider value={sharingScopesResponse.results}>
       <UserInfoContext.Provider value={userInfo}>
-        <AssetsList
-          assets={assetsListResponse.results}
-          loading={loading}
-          message={
-            errorMessage
-              ? errorMessage
-              : assetsListResponse.count === 0
-                ? `There are no ${assetKind.title} in your catalogue.`
-                : null
-          }
-          fetchAssetsListResponse={fetchAssetsListResponse}
-          button={
-            <Tooltip title="Refresh" arrow>
-              <IconButton
-                aria-label="Reload"
-                style={{ borderRadius: '100%' }}
-                onClick={() => fetchAssetsListResponse()}
-              >
-                <RefreshIcon />
-              </IconButton>
-            </Tooltip>
-          }
-          filter={<ListFilters setUrl={setAssetsListUrl} />}
-          pageNav={
-            <PageNav
-              listResponse={assetsListResponse}
-              setUrl={setAssetsListUrl}
+        <Stack spacing={3}>
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{
+              justifyContent: 'start',
+              alignItems: 'center',
+              padding: '10px'
+            }}
+          >
+            <ListFilters setUrl={setAssetsListUrl} />
+            <RefreshButton onClick={() => fetchAssetsListResponse()} />
+          </Stack>
+          {loading ? (
+            <LoadingAssetsList />
+          ) : errorMessage ? (
+            <Alert severity="error">{errorMessage}</Alert>
+          ) : (
+            <AssetsList
+              assets={assetsListResponse.results}
+              assetKind={assetKind}
+              fetchAssetsListResponse={fetchAssetsListResponse}
+              pageNav={
+                <PageNav
+                  listResponse={assetsListResponse}
+                  setUrl={setAssetsListUrl}
+                />
+              }
             />
-          }
-        />
+          )}
+        </Stack>
       </UserInfoContext.Provider>
     </SharingScopesContext.Provider>
   );

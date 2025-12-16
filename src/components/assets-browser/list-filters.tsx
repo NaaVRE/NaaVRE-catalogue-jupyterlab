@@ -1,5 +1,4 @@
 import React from 'react';
-import Stack from '@mui/material/Stack';
 
 import { ListFiltersSearch } from './list-filters-search';
 import { ListFiltersOrdering } from './list-filters-ordering';
@@ -29,18 +28,10 @@ export function ListFilters({
   setUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   return (
-    <Stack
-      direction="row"
-      spacing={1}
-      sx={{
-        justifyContent: 'start',
-        alignItems: 'center',
-        padding: '10px'
-      }}
-    >
+    <>
       <ListFiltersSearch setUrl={setUrl} />
       <ListFiltersCheckboxes setUrl={setUrl} />
       <ListFiltersOrdering setUrl={setUrl} />
-    </Stack>
+    </>
   );
 }
