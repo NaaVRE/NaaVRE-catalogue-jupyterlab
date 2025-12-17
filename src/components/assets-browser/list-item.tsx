@@ -46,7 +46,7 @@ function MoreMenu({ actions }: { actions: Action[] }) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        sx={{ borderRadius: '100%' }}
+        style={{ borderRadius: '100%' }}
       >
         <MoreVertIcon />
       </IconButton>
@@ -140,7 +140,8 @@ export function ListItem({
               <Tooltip key={a.title} title={a.title}>
                 <IconButton
                   aria-label={a.title}
-                  sx={{ borderRadius: '100%', width: '40px' }}
+                  style={{ borderRadius: '100%' }}
+                  sx={{ width: '40px' }}
                   onClick={a.handler}
                 >
                   {a.icon}
