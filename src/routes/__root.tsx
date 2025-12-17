@@ -32,15 +32,24 @@ function RootLayout() {
   }, [status, location]);
   return (
     <Container
+      maxWidth={false}
+      disableGutters
       sx={{
-        width: '100vw',
-        height: '100vh',
-        padding: '1rem',
+        height: '100%',
+        width: '100%',
+        overflow: 'scroll',
         color: 'text.primary',
         bgcolor: 'background.paper'
       }}
     >
-      <Outlet />
+      <Container
+        sx={{
+          minWidth: '650px',
+          padding: '1rem'
+        }}
+      >
+        <Outlet />
+      </Container>
     </Container>
   );
 }
