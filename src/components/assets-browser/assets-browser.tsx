@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -34,23 +34,20 @@ export function AssetsBrowser({ assetKind }: { assetKind: AssetKind }) {
   const settings = useContext(SettingsContext);
   const {
     setUrl: setAssetsListUrl,
-    setInitialPath: setAssetsListInitialPath,
     loading,
     errorMessage,
     fetchResponse: fetchAssetsListResponse,
     response: assetsListResponse
   } = useCatalogueList<Asset>({
-    settings,
-    initialPath: `${assetKind.cataloguePath}/?ordering=-created`
+    catalogueServiceUrl: settings.catalogueServiceUrl,
+    path: assetKind.cataloguePath,
+    initialSearchParams: '?ordering=-created'
   });
 
-  useEffect(() => {
-    setAssetsListInitialPath(`${assetKind.cataloguePath}/?ordering=-created`);
-  }, [assetKind.cataloguePath]);
-
   const { response: sharingScopesResponse } = useCatalogueList<ISharingScope>({
-    settings,
-    initialPath: 'sharing-scopes/?page_size=100',
+    catalogueServiceUrl: settings.catalogueServiceUrl,
+    path: 'sharing-scopes',
+    initialSearchParams: '?page_size=100',
     getAllPages: true
   });
 

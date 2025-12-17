@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ISettings } from '../settings';
 import {
   fetchListFromCatalogue,
   ICatalogueListResponse
 } from '../utils/catalog';
 
-function getInitialUrl(settings: ISettings, initialPath: string) {
-  return settings.catalogueServiceUrl
-    ? `${settings.catalogueServiceUrl}/${initialPath}`
+function getUrl(
+  catalogueServiceUrl: string | undefined,
+  path: string,
+  initialSearchParams: string
+) {
+  return catalogueServiceUrl
+    ? `${catalogueServiceUrl}/${path}/${initialSearchParams}`
     : null;
 }
 
@@ -19,32 +22,32 @@ const emptyResponse = {
 };
 
 export function useCatalogueList<T>({
-  settings,
-  initialPath,
+  catalogueServiceUrl,
+  path,
+  initialSearchParams,
   getAllPages
 }: {
-  settings: ISettings;
-  initialPath: string;
+  catalogueServiceUrl: string | undefined;
+  path: string;
+  initialSearchParams: string;
   getAllPages?: boolean;
 }) {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const [url, setUrl] = useState<string | null>(
-    getInitialUrl(settings, initialPath)
-  );
-
-  const setInitialPath = useCallback(
-    (initialPath: string) => {
-      setUrl(getInitialUrl(settings, initialPath));
-    },
-    [settings]
+    getUrl(catalogueServiceUrl, path, initialSearchParams)
   );
 
   useEffect(() => {
-    settings.catalogueServiceUrl &&
-      setUrl(`${settings.catalogueServiceUrl}/${initialPath}`);
-  }, [settings.catalogueServiceUrl]);
+    setUrl(url =>
+      url !== null
+        ? getUrl(catalogueServiceUrl, path, new URL(url).search)
+        : catalogueServiceUrl
+          ? getUrl(catalogueServiceUrl, path, initialSearchParams)
+          : null
+    );
+  }, [catalogueServiceUrl, path, initialSearchParams]);
 
   const [response, setResponse] =
     useState<ICatalogueListResponse<T>>(emptyResponse);
@@ -74,7 +77,6 @@ export function useCatalogueList<T>({
   return {
     url,
     setUrl,
-    setInitialPath,
     loading,
     setLoading,
     errorMessage,
