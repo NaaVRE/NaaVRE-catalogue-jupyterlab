@@ -1,6 +1,6 @@
-import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab/lib/handler';
+import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab';
 
-import { IWorkflowCell } from '../../types/NaaVRECatalogue/assets'; // FIXME should be @naavre/communicator-jupyter
+import { IWorkflowCell } from '../../types/NaaVRECatalogue/assets';
 
 export const cells: IWorkflowCell[] = [
   {

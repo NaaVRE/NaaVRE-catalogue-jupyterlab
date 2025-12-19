@@ -1,9 +1,9 @@
-import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab/lib/handler';
+import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab';
 
 import {
   IFileAsset,
   IVersioningMixin
-} from '../../types/NaaVRECatalogue/assets'; // FIXME should be @naavre/communicator-jupyter
+} from '../../types/NaaVRECatalogue/assets';
 
 // FIXME: make it realistic
 export const notebooks: (IFileAsset & IVersioningMixin)[] = [

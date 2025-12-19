@@ -1,7 +1,6 @@
-// TODO: move to @naavre-communicator and import from there
 import { useEffect, useState } from 'react';
 
-import { requestAPI } from '@naavre/communicator-jupyterlab/lib/handler'; // FIXME import from module root
+import { requestAPI } from '@naavre/communicator-jupyterlab';
 
 export interface IUserInfo {
   sub: string | null;

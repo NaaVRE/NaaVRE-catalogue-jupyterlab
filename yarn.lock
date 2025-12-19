@@ -3982,7 +3982,7 @@ __metadata:
     "@mantine/hooks": ^7.17.8
     "@mui/icons-material": ^7.3.6
     "@mui/material": ^7.3.6
-    "@naavre/communicator-jupyterlab": ^0.3.1
+    "@naavre/communicator-jupyterlab": ^0.3.2
     "@storybook/addon-webpack5-compiler-swc": ^4.0.2
     "@storybook/react-webpack5": 9.1.7
     "@tanstack/react-router": ^1.140.5
@@ -4021,14 +4021,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@naavre/communicator-jupyterlab@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "@naavre/communicator-jupyterlab@npm:0.3.1"
+"@naavre/communicator-jupyterlab@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "@naavre/communicator-jupyterlab@npm:0.3.2"
   dependencies:
     "@jupyterlab/application": ^4.0.0
     "@jupyterlab/coreutils": ^6.0.0
     "@jupyterlab/services": ^7.0.0
-  checksum: 0856b0fc4e44ea67b9b4f8ad1cbe5e7f48802d21cebea082733be1aeb109b960b46eec937cd763198f5392a52549f758f9135f4e41453462e6b9a1d8aab8c8f9
+  checksum: 54741184cb6779c8a4ad70f954bb40ab58f46db2fd59f815aa4cc31440c2f7055dab615abf32c3c32b45aa0d683337462f602d04f71032af396705a62fba71f0
   languageName: node
   linkType: hard
 
