@@ -56,7 +56,9 @@ export function AssetsBrowser({ assetKind }: { assetKind: AssetKind }) {
   const userInfo = useUserInfo();
 
   return (
-    <SharingScopesContext.Provider value={sharingScopesResponse.results}>
+    <SharingScopesContext.Provider
+      value={sharingScopesResponse?.results || null}
+    >
       <UserInfoContext.Provider value={userInfo}>
         <Stack spacing={3}>
           <Stack
@@ -78,6 +80,10 @@ export function AssetsBrowser({ assetKind }: { assetKind: AssetKind }) {
             <LoadingAssetsList />
           ) : errorMessage ? (
             <Alert severity="error">{errorMessage}</Alert>
+          ) : assetsListResponse === null ? (
+            <Alert severity="error">
+              Could not load {assetKind.namePlural}.
+            </Alert>
           ) : (
             <AssetsList
               assets={assetsListResponse.results}

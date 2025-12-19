@@ -14,13 +14,6 @@ function getUrl(
     : null;
 }
 
-const emptyResponse = {
-  count: 0,
-  next: null,
-  previous: null,
-  results: []
-};
-
 export function useCatalogueList<T>({
   catalogueServiceUrl,
   path,
@@ -52,8 +45,9 @@ export function useCatalogueList<T>({
     );
   }, [catalogueServiceUrl, path, initialSearchParams]);
 
-  const [response, setResponse] =
-    useState<ICatalogueListResponse<T>>(emptyResponse);
+  const [response, setResponse] = useState<ICatalogueListResponse<T> | null>(
+    null
+  );
 
   const fetchResponse = useCallback(() => {
     setErrorMessage && setErrorMessage(null);
@@ -67,7 +61,7 @@ export function useCatalogueList<T>({
           const msg = `Error listing items: ${String(error)}`;
           console.error(msg);
           setErrorMessage && setErrorMessage(msg);
-          setResponse(emptyResponse);
+          setResponse(null);
         })
         .finally(() => {
           setLoading && setLoading(false);

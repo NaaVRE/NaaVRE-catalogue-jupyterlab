@@ -82,6 +82,7 @@ function getCheckboxFiltersAsSections(
 export function useSharingScopeCheckboxes(
   defaultCheckboxFilters: ICheckboxFilter[]
 ) {
+  const [loading, setLoading] = useState(true);
   const settings = useContext(SettingsContext);
 
   // All checkbox filters
@@ -105,20 +106,29 @@ export function useSharingScopeCheckboxes(
 
   // Updates checkboxFilters when sharingScopes changes, i.e. when getting the response from the catalogue
   useEffect(() => {
-    setCheckboxFilters(checkboxFilters => [
-      ...checkboxFilters,
-      ...getSharingScopesAsCheckboxFilters(
-        settings,
-        sharingScopes.filter(s =>
-          settings.virtualLab
-            ? s.show_in_virtual_labs.includes(settings.virtualLab)
-            : true
-        ),
-        activeSharingScopes,
-        setActiveSharingScopes
-      ).filter(f => !checkboxFilters.some(d => d.key === f.key))
-    ]);
-  }, [settings, sharingScopes, activeSharingScopes, setActiveSharingScopes]);
+    if (sharingScopes !== null) {
+      setCheckboxFilters(checkboxFilters => [
+        ...checkboxFilters,
+        ...getSharingScopesAsCheckboxFilters(
+          settings,
+          sharingScopes.filter(s =>
+            settings.virtualLab
+              ? s.show_in_virtual_labs.includes(settings.virtualLab)
+              : true
+          ),
+          activeSharingScopes,
+          setActiveSharingScopes
+        ).filter(f => !checkboxFilters.some(d => d.key === f.key))
+      ]);
+      setLoading(false);
+    }
+  }, [
+    setLoading,
+    settings,
+    sharingScopes,
+    activeSharingScopes,
+    setActiveSharingScopes
+  ]);
 
   // Update checkboxFiltersBySection when checkboxFilters change
   useEffect(() => {
@@ -126,6 +136,7 @@ export function useSharingScopeCheckboxes(
   }, [checkboxFilters]);
 
   return {
+    loading,
     checkboxFilters,
     setCheckboxFilters,
     checkboxFiltersBySection,

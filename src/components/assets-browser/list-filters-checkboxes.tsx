@@ -53,8 +53,12 @@ export function ListFiltersCheckboxes({
   setUrl: React.Dispatch<React.SetStateAction<string | null>>;
   setReady: (ready: boolean) => void;
 }) {
-  const { checkboxFilters, setCheckboxFilters, checkboxFiltersBySection } =
-    useSharingScopeCheckboxes(defaultCheckboxFilters);
+  const {
+    loading,
+    checkboxFilters,
+    setCheckboxFilters,
+    checkboxFiltersBySection
+  } = useSharingScopeCheckboxes(defaultCheckboxFilters);
 
   const { virtualLab } = useContext(SettingsContext);
 
@@ -87,8 +91,11 @@ export function ListFiltersCheckboxes({
         updateSearchParams(url, filter.getSearchParams(filter.checked))
       );
     });
-    setReady(true);
-  }, [checkboxFilters, setReady]);
+  }, [checkboxFilters]);
+
+  useEffect(() => {
+    setReady(!loading);
+  }, [setReady, loading]);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
