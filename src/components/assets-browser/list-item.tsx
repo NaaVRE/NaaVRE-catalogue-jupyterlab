@@ -15,9 +15,11 @@ import ShareIcon from '@mui/icons-material/Share';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
 import { ShareDialog } from './share-dialog';
+import { IJupyterContext, JupyterContext } from '../../contexts/JupyterContext';
 import { UserInfoContext } from '../../contexts/UserInfoContext';
 import { Asset, AssetKind } from './asset-kinds';
 import { DeleteDialog } from './delete-dialog';
+import { downloadAndOpenFile } from '../../services/jupyterlab';
 
 type Action = {
   title: string;
@@ -26,6 +28,36 @@ type Action = {
   enabled: boolean;
   showInline: boolean;
 };
+
+function getDownloadAction(
+  asset: Asset,
+  jupyterContext: IJupyterContext | null
+): Action {
+  const inJupyter = jupyterContext !== null;
+  const hasFile = 'file' in asset;
+  if (hasFile && inJupyter) {
+    return {
+      title: 'Add to my files',
+      icon: <NoteAddIcon />,
+      handler: () =>
+        downloadAndOpenFile(
+          jupyterContext?.docManager,
+          asset.file,
+          asset.title
+        ),
+      enabled: hasFile,
+      showInline: true
+    };
+  } else {
+    return {
+      title: '',
+      icon: <></>,
+      handler: () => {},
+      enabled: false,
+      showInline: true
+    };
+  }
+}
 
 function MoreMenu({ actions }: { actions: Action[] }) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -90,9 +122,9 @@ export function ListItem({
   fetchAssetsListResponse: () => void;
 }) {
   const userinfo = useContext(UserInfoContext);
+  const jupyterContext = useContext(JupyterContext);
   const userIsOwner = asset.owner === userinfo.preferred_username;
   const hasVersion = 'version' in asset;
-  const hasFile = 'file' in asset;
   const isShared =
     (asset.shared_with_users || []).length > 0 ||
     (asset.shared_with_scopes || []).length > 0;
@@ -103,14 +135,8 @@ export function ListItem({
   const regex = new RegExp(`-${asset.owner}$`);
   const title = asset.title.replace(regex, '');
 
-  const actions = [
-    {
-      title: 'Add to my files',
-      icon: <NoteAddIcon />,
-      handler: () => {}, // TODO
-      enabled: hasFile,
-      showInline: true
-    },
+  const actions: Action[] = [
+    getDownloadAction(asset, jupyterContext),
     {
       title: !isShared ? 'Share' : userIsOwner ? 'Shared' : 'Shared with me',
       icon: isShared ? <PeopleIcon /> : <ShareIcon />,
