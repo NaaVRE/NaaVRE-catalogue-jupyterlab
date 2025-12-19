@@ -55,14 +55,8 @@
     "fields": {
       "title": "Test Community 1",
       "label": "community",
-      "show_in_virtual_labs": [
-        "test-virtual-lab-1",
-        "test-virtual-lab-2"
-      ],
-      "check_in_virtual_labs": [
-        "test-virtual-lab-1",
-        "test-virtual-lab-2"
-      ]
+      "show_in_virtual_labs": ["test-virtual-lab-1", "test-virtual-lab-2"],
+      "check_in_virtual_labs": ["test-virtual-lab-1", "test-virtual-lab-2"]
     }
   },
   {
@@ -71,12 +65,8 @@
     "fields": {
       "title": "Test Community 2",
       "label": "community",
-      "show_in_virtual_labs": [
-        "test-virtual-lab-2"
-      ],
-      "check_in_virtual_labs": [
-        "test-virtual-lab-2"
-      ]
+      "show_in_virtual_labs": ["test-virtual-lab-2"],
+      "check_in_virtual_labs": ["test-virtual-lab-2"]
     }
   },
   {
@@ -85,13 +75,8 @@
     "fields": {
       "title": "Test Virtual Lab 1",
       "label": "virtual_lab",
-      "show_in_virtual_labs": [
-        "test-virtual-lab-1",
-        "test-virtual-lab-2"
-      ],
-      "check_in_virtual_labs": [
-        "test-virtual-lab-1"
-      ]
+      "show_in_virtual_labs": ["test-virtual-lab-1", "test-virtual-lab-2"],
+      "check_in_virtual_labs": ["test-virtual-lab-1"]
     }
   },
   {
@@ -100,13 +85,8 @@
     "fields": {
       "title": "Test Virtual Lab 2",
       "label": "virtual_lab",
-      "show_in_virtual_labs": [
-        "test-virtual-lab-1",
-        "test-virtual-lab-2"
-      ],
-      "check_in_virtual_labs": [
-        "test-virtual-lab-2"
-      ]
+      "show_in_virtual_labs": ["test-virtual-lab-1", "test-virtual-lab-2"],
+      "check_in_virtual_labs": ["test-virtual-lab-2"]
     }
   },
   {
@@ -191,9 +171,7 @@
       "modified": "2025-09-19T18:48:23.397Z",
       "owner": 2,
       "virtual_lab": "test-virtual-lab-1",
-      "shared_with_users": [
-        3
-      ],
+      "shared_with_users": [3],
       "shared_with_scopes": []
     }
   },
@@ -208,9 +186,7 @@
       "owner": 2,
       "virtual_lab": "test-virtual-lab-1",
       "shared_with_users": [],
-      "shared_with_scopes": [
-        "test-virtual-lab-1"
-      ]
+      "shared_with_scopes": ["test-virtual-lab-1"]
     }
   },
   {
@@ -224,9 +200,7 @@
       "owner": 2,
       "virtual_lab": "test-virtual-lab-2",
       "shared_with_users": [],
-      "shared_with_scopes": [
-        "test-virtual-lab-2"
-      ]
+      "shared_with_scopes": ["test-virtual-lab-2"]
     }
   },
   {
@@ -240,9 +214,7 @@
       "owner": 2,
       "virtual_lab": "test-virtual-lab-1",
       "shared_with_users": [],
-      "shared_with_scopes": [
-        "test-community-1"
-      ]
+      "shared_with_scopes": ["test-community-1"]
     }
   },
   {
@@ -343,23 +315,12 @@
       "base_container_image": 2,
       "kernel": "ipython",
       "source_url": "",
-      "dependencies": [
-        5,
-        6
-      ],
+      "dependencies": [5, 6],
       "inputs": [],
-      "outputs": [
-        8
-      ],
-      "confs": [
-        2
-      ],
-      "params": [
-        6
-      ],
-      "secrets": [
-        7
-      ]
+      "outputs": [8],
+      "confs": [2],
+      "params": [6],
+      "secrets": [7]
     }
   },
   {
@@ -372,23 +333,12 @@
       "base_container_image": 2,
       "kernel": "ipython",
       "source_url": "",
-      "dependencies": [
-        5,
-        6
-      ],
+      "dependencies": [5, 6],
       "inputs": [],
-      "outputs": [
-        8
-      ],
-      "confs": [
-        2
-      ],
-      "params": [
-        6
-      ],
-      "secrets": [
-        7
-      ]
+      "outputs": [8],
+      "confs": [2],
+      "params": [6],
+      "secrets": [7]
     }
   },
   {
@@ -402,9 +352,7 @@
       "kernel": "",
       "source_url": "",
       "dependencies": [],
-      "inputs": [
-        5
-      ],
+      "inputs": [5],
       "outputs": [],
       "confs": [],
       "params": [],
@@ -421,23 +369,12 @@
       "base_container_image": 2,
       "kernel": "ipython",
       "source_url": "",
-      "dependencies": [
-        5,
-        6
-      ],
+      "dependencies": [5, 6],
       "inputs": [],
-      "outputs": [
-        8
-      ],
-      "confs": [
-        2
-      ],
-      "params": [
-        6
-      ],
-      "secrets": [
-        7
-      ]
+      "outputs": [8],
+      "confs": [2],
+      "params": [6],
+      "secrets": [7]
     }
   },
   {

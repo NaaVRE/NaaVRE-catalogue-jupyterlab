@@ -5,10 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { App } from './app';
 import { ISettings, SettingsContext } from './settings';
 import { theme } from './theme';
-import {
-  IJupyterContext,
-  JupyterContext
-} from './contexts/JupyterContext';
+import { IJupyterContext, JupyterContext } from './contexts/JupyterContext';
 
 export class CatalogueWidget extends ReactWidget {
   jupyterContext: IJupyterContext | null = null;

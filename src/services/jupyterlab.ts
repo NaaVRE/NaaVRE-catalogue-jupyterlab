@@ -12,22 +12,21 @@ async function downloadTextFile(url: string) {
 
 export async function downloadAndOpenFile(
   docManager: IDocumentManager,
-  url: string,
+  url: string
 ): Promise<void> {
-  const filename = new URL(url).pathname.split('/').pop()
+  const filename = new URL(url).pathname.split('/').pop();
 
   if (filename === undefined) {
-    throw Error(`Cannot download file from URL: ${url}`)
+    throw Error(`Cannot download file from URL: ${url}`);
   }
 
   const notificationId = Notification.emit(
     `Downloading\n${filename}`,
     'in-progress',
     {
-      autoClose: false,
+      autoClose: false
     }
   );
-
 
   const contents = new ContentsManager();
 
@@ -40,7 +39,6 @@ export async function downloadAndOpenFile(
       format: 'text',
       content: textContent
     });
-
 
     Notification.update({
       id: notificationId,
@@ -56,7 +54,6 @@ export async function downloadAndOpenFile(
         }
       ]
     });
-
   } catch (err) {
     Notification.update({
       id: notificationId,
