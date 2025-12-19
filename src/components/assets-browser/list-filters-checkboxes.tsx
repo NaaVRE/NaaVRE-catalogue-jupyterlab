@@ -47,9 +47,11 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 }
 
 export function ListFiltersCheckboxes({
-  setUrl
+  setUrl,
+  setReady
 }: {
   setUrl: React.Dispatch<React.SetStateAction<string | null>>;
+  setReady: (ready: boolean) => void;
 }) {
   const { checkboxFilters, setCheckboxFilters, checkboxFiltersBySection } =
     useSharingScopeCheckboxes(defaultCheckboxFilters);
@@ -85,7 +87,8 @@ export function ListFiltersCheckboxes({
         updateSearchParams(url, filter.getSearchParams(filter.checked))
       );
     });
-  }, [checkboxFilters]);
+    setReady(true);
+  }, [checkboxFilters, setReady]);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

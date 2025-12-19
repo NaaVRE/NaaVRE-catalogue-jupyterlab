@@ -9,9 +9,11 @@ import TextField from '@mui/material/TextField';
 import { updateSearchParams } from './list-filters';
 
 export function ListFiltersSearch({
-  setUrl
+  setUrl,
+  setReady
 }: {
   setUrl: React.Dispatch<React.SetStateAction<string | null>>;
+  setReady: (ready: boolean) => void;
 }) {
   const [search, setSearch] = useState<string | null>(null);
   const [debouncedSearch] = useDebouncedValue(search, 200);
@@ -23,7 +25,8 @@ export function ListFiltersSearch({
         page: null
       })
     );
-  }, [debouncedSearch]);
+    setReady(true);
+  }, [debouncedSearch, setReady]);
 
   return (
     <TextField

@@ -25,15 +25,18 @@ export function useCatalogueList<T>({
   catalogueServiceUrl,
   path,
   initialSearchParams,
+  startPaused = false,
   getAllPages
 }: {
   catalogueServiceUrl: string | undefined;
   path: string;
   initialSearchParams: string;
+  startPaused?: boolean;
   getAllPages?: boolean;
 }) {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [paused, setPaused] = useState(startPaused);
 
   const [url, setUrl] = useState<string | null>(
     getUrl(catalogueServiceUrl, path, initialSearchParams)
@@ -72,7 +75,11 @@ export function useCatalogueList<T>({
     }
   }, [url]);
 
-  useEffect(() => fetchResponse(), [fetchResponse]);
+  useEffect(() => {
+    if (!paused) {
+      fetchResponse();
+    }
+  }, [paused, fetchResponse]);
 
   return {
     url,
@@ -81,6 +88,8 @@ export function useCatalogueList<T>({
     setLoading,
     errorMessage,
     setErrorMessage,
+    paused,
+    setPaused,
     fetchResponse,
     response
   };

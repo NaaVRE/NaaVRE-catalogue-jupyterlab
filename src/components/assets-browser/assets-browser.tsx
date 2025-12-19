@@ -36,12 +36,14 @@ export function AssetsBrowser({ assetKind }: { assetKind: AssetKind }) {
     setUrl: setAssetsListUrl,
     loading,
     errorMessage,
+    setPaused: setAssetsListPaused,
     fetchResponse: fetchAssetsListResponse,
     response: assetsListResponse
   } = useCatalogueList<Asset>({
     catalogueServiceUrl: settings.catalogueServiceUrl,
     path: assetKind.cataloguePath,
-    initialSearchParams: '?ordering=-created'
+    initialSearchParams: '?ordering=-created',
+    startPaused: true
   });
 
   const { response: sharingScopesResponse } = useCatalogueList<ISharingScope>({
@@ -66,7 +68,10 @@ export function AssetsBrowser({ assetKind }: { assetKind: AssetKind }) {
               padding: '10px'
             }}
           >
-            <ListFilters setUrl={setAssetsListUrl} />
+            <ListFilters
+              setUrl={setAssetsListUrl}
+              setPaused={setAssetsListPaused}
+            />
             <RefreshButton onClick={() => fetchAssetsListResponse()} />
           </Stack>
           {loading ? (

@@ -14,9 +14,11 @@ const orderingOptions = [
 ];
 
 export function ListFiltersOrdering({
-  setUrl
+  setUrl,
+  setReady
 }: {
   setUrl: React.Dispatch<React.SetStateAction<string | null>>;
+  setReady: (ready: boolean) => void;
 }) {
   const [ordering, setOrdering] = useState<string | null>('-created');
 
@@ -27,7 +29,8 @@ export function ListFiltersOrdering({
         page: null
       })
     );
-  }, [ordering]);
+    setReady(true);
+  }, [ordering, setReady]);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
