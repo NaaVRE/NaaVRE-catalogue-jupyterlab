@@ -40,11 +40,7 @@ function getDownloadAction(
       title: 'Add to my files',
       icon: <NoteAddIcon />,
       handler: () =>
-        downloadAndOpenFile(
-          jupyterContext?.docManager,
-          asset.file,
-          asset.title
-        ),
+        downloadAndOpenFile(jupyterContext?.docManager, asset.file),
       enabled: hasFile,
       showInline: true
     };
