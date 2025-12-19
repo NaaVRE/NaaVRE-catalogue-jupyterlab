@@ -46,3 +46,4 @@ services:
     command: "/configure-s3.sh"
     volumes:
       - ./configure-catalogue-s3.sh:/configure-s3.sh
+      - ./notebook.ipynb:/notebook.ipynb

@@ -31,3 +31,4 @@ mc admin accesskey create minio/ "$MINIO_ROOT_USER" \
   --access-key "$BUCKET_ACCESS_KEY" \
   --secret-key "$BUCKET_SECRET_KEY" \
   || echo "continuing"
+mc put /notebook.ipynb "minio/$BUCKET_NAME/files/6c59fd8d-ffd1-4449-80df-218b38f9ad23_Some_notebook.ipynb"
