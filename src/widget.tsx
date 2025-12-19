@@ -5,12 +5,21 @@ import { ThemeProvider } from '@mui/material/styles';
 import { App } from './app';
 import { ISettings, SettingsContext } from './settings';
 import { theme } from './theme';
+import {
+  IJupyterContext,
+  JupyterContext
+} from './contexts/JupyterContext';
 
 export class CatalogueWidget extends ReactWidget {
+  jupyterContext: IJupyterContext | null = null;
   settings: ISettings = {};
 
-  constructor(settings: Partial<ISettings>) {
+  constructor(
+    jupyterContext: IJupyterContext | null,
+    settings: Partial<ISettings>
+  ) {
     super();
+    this.jupyterContext = jupyterContext;
     this.settings = settings;
   }
 
@@ -21,11 +30,13 @@ export class CatalogueWidget extends ReactWidget {
 
   render() {
     return (
-      <SettingsContext.Provider value={this.settings}>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </SettingsContext.Provider>
+      <JupyterContext.Provider value={this.jupyterContext}>
+        <SettingsContext.Provider value={this.settings}>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </SettingsContext.Provider>
+      </JupyterContext.Provider>
     );
   }
 }

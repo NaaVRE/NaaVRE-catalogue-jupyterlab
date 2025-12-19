@@ -10,6 +10,7 @@ import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { CatalogueWidget } from './widget';
 import { launcherIcon, tabIcon } from './icons';
 import { ISettings } from './settings';
+import { IDocumentManager } from '@jupyterlab/docmanager';
 
 export namespace CommandIDs {
   export const openOrRestore = 'open-or-restore-catalogue';
@@ -23,10 +24,11 @@ const extension: JupyterFrontEndPlugin<void> = {
   id: '@naavre/catalogue-jupyterlab:plugin',
   description: 'NaaVRE assets catalogue frontend on Jupyter Lab',
   autoStart: true,
-  requires: [ILauncher, IRouter, ISettingRegistry],
+  requires: [IDocumentManager, ILauncher, IRouter, ISettingRegistry],
   optional: [ISettingRegistry],
   activate: (
     app: JupyterFrontEnd,
+    docManager: IDocumentManager,
     launcher: ILauncher,
     router: IRouter,
     settingRegistry: ISettingRegistry | null
@@ -44,7 +46,10 @@ const extension: JupyterFrontEndPlugin<void> = {
     function createNewWidget(
       settings: Partial<ISettings>
     ): MainAreaWidget<CatalogueWidget> {
-      const catalogueWidget = new CatalogueWidget(settings);
+      const catalogueWidget = new CatalogueWidget(
+        { docManager: docManager },
+        settings
+      );
       const mainAreaWidget = new MainAreaWidget<CatalogueWidget>({
         content: catalogueWidget
       });
