@@ -91,9 +91,8 @@ export function useSharingScopeCheckboxes(
   );
 
   // Checkbox filters organized by sections
-  const [checkboxFiltersBySection, setCheckboxFiltersBySection] = useState<
-    ICheckboxFiltersSection[]
-  >([]);
+  const checkboxFiltersBySection =
+    getCheckboxFiltersAsSections(checkboxFilters);
 
   // Sharing scopes from the catalogue
   const sharingScopes = useContext(SharingScopesContext);
@@ -129,11 +128,6 @@ export function useSharingScopeCheckboxes(
     activeSharingScopes,
     setActiveSharingScopes
   ]);
-
-  // Update checkboxFiltersBySection when checkboxFilters change
-  useEffect(() => {
-    setCheckboxFiltersBySection(getCheckboxFiltersAsSections(checkboxFilters));
-  }, [checkboxFilters]);
 
   return {
     loading,
