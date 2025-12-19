@@ -30,7 +30,9 @@ function ShredWithWarning({
       </DialogContentText>
       <DialogContentText component="ul">
         {sharedWithList.map(sharedWith => (
-          <DialogContentText component="li">{sharedWith}</DialogContentText>
+          <DialogContentText key={sharedWith} component="li">
+            {sharedWith}
+          </DialogContentText>
         ))}
       </DialogContentText>
     </Stack>

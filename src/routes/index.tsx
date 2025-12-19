@@ -28,7 +28,7 @@ export function Launcher() {
       <Typography variant="h4">Assets catalogue</Typography>
       <Stack direction="row" spacing={2}>
         {assetKinds.map(assetKind => (
-          <LauncherItem key={assetKind.name} assetKind={assetKind} />
+          <LauncherItem key={assetKind.slug} assetKind={assetKind} />
         ))}
       </Stack>
     </Stack>

@@ -39,6 +39,7 @@ export function AssetsList({
         <TableBody>
           {assets.map(asset => (
             <ListItem
+              key={asset.url}
               asset={asset}
               assetKind={assetKind}
               fetchAssetsListResponse={fetchAssetsListResponse}

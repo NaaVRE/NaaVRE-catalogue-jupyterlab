@@ -30,6 +30,7 @@ function RouteComponent() {
         >
           {assetKinds.map(assetKind => (
             <ToggleButton
+              key={assetKind.slug}
               value={`/assets/${assetKind.slug}`}
               aria-label="left aligned"
             >
