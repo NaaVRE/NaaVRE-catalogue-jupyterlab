@@ -26,7 +26,7 @@ export function ListFiltersSearch({
       })
     );
     setReady(true);
-  }, [debouncedSearch, setReady]);
+  }, [debouncedSearch]);
 
   return (
     <TextField

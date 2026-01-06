@@ -30,7 +30,7 @@ export function ListFiltersOrdering({
       })
     );
     setReady(true);
-  }, [ordering, setReady]);
+  }, [ordering]);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

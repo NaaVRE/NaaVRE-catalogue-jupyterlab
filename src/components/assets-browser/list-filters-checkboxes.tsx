@@ -86,16 +86,15 @@ export function ListFiltersCheckboxes({
 
   // Call setUrl when checkboxFilter changes
   useEffect(() => {
-    checkboxFilters.forEach(filter => {
-      setUrl((url: string | null) =>
-        updateSearchParams(url, filter.getSearchParams(filter.checked))
-      );
-    });
-  }, [checkboxFilters]);
-
-  useEffect(() => {
-    setReady(!loading);
-  }, [setReady, loading]);
+    if (!loading) {
+      checkboxFilters.forEach(filter => {
+        setUrl((url: string | null) =>
+          updateSearchParams(url, filter.getSearchParams(filter.checked))
+        );
+      });
+      setReady(true);
+    }
+  }, [checkboxFilters, loading]);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
