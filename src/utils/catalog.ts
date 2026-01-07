@@ -1,5 +1,6 @@
 import { NaaVREExternalService } from '@naavre/communicator-jupyterlab';
 import { ceil } from 'lodash';
+import { INotebookFile, IWorkflowFile } from '../types/NaaVRECatalogue/assets';
 
 export interface ICatalogueListResponse<T> {
   count: number;
@@ -82,5 +83,49 @@ export async function fetchListFromCatalogue<T>(
       content.results = content.results.concat(pageContent.results);
     }
     return content;
+  }
+}
+
+export interface IPresignResponse {
+  url: string;
+  key: string;
+}
+
+export async function presign(
+  url: string,
+  filename: string,
+  content_type: 'application/json'
+): Promise<IPresignResponse> {
+  const resp = await NaaVREExternalService(
+    'POST',
+    url,
+    {
+      accept: 'application/json'
+    },
+    {
+      filename: filename,
+      content_type: content_type
+    }
+  );
+  if (resp.status_code !== 200) {
+    throw `${resp.status_code} ${resp.reason}`;
+  }
+  return JSON.parse(resp.content);
+}
+
+export async function createFileAsset(
+  url: string,
+  asset: Omit<INotebookFile | IWorkflowFile, 'file' | 'url'> & { key: string }
+) {
+  const resp = await NaaVREExternalService(
+    'POST',
+    url,
+    {
+      accept: 'application/json'
+    },
+    asset
+  );
+  if (resp.status_code !== 201) {
+    throw `${resp.status_code} ${resp.reason}`;
   }
 }

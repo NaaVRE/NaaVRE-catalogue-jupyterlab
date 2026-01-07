@@ -42,7 +42,6 @@ describe('get current page number and page count', () => {
           next: currentPage === pageCount ? null : `?page=${currentPage + 1}`,
           results: Array(currentPageSize)
         };
-        console.debug(resp);
         expect(getPageNumberAndCount(resp)).toStrictEqual([
           currentPage,
           pageCount
