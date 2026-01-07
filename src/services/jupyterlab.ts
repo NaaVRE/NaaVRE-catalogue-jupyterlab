@@ -72,9 +72,9 @@ export async function downloadAndOpenFile(
 function getCataloguePath(fileType: string): string {
   switch (fileType) {
     case 'notebook':
-      return 'notebook-files'
+      return 'notebook-files';
     case 'naavrewf':
-      return 'workflow-files'
+      return 'workflow-files';
     default:
       throw `unsupported file type: ${fileType}`;
   }
@@ -134,7 +134,7 @@ export async function uploadFile(
       id: notificationId,
       type: 'success',
       message: `Uploaded\n${model.name}`,
-      autoClose: 5000,
+      autoClose: 5000
       // TODO: implement once there is an assets detail view
       // actions: [
       //   {

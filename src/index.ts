@@ -132,10 +132,7 @@ const extension: JupyterFrontEndPlugin<void> = {
               if (item === undefined || item.done) {
                 return;
               }
-              uploadFile(
-                item.value,
-                settings.composite
-              ).then();
+              uploadFile(item.value, settings.composite).then();
             }
           });
 
