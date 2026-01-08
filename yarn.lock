@@ -4000,7 +4000,7 @@ __metadata:
     eslint: ^8.36.0
     eslint-config-prettier: ^8.8.0
     eslint-plugin-prettier: ^5.0.0
-    eslint-plugin-storybook: 9.1.7
+    eslint-plugin-storybook: 10.1.11
     jest: ^29.2.0
     lodash: ^4.17.21
     msw: ^2.12.4
@@ -8031,15 +8031,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:9.1.7":
-  version: 9.1.7
-  resolution: "eslint-plugin-storybook@npm:9.1.7"
+"eslint-plugin-storybook@npm:10.1.11":
+  version: 10.1.11
+  resolution: "eslint-plugin-storybook@npm:10.1.11"
   dependencies:
     "@typescript-eslint/utils": ^8.8.1
   peerDependencies:
     eslint: ">=8"
-    storybook: ^9.1.7
-  checksum: 32265320daafd32f0577b290d0023e49163bd597385b57342c1386a7e95a6064be1daf895a23053cf631d7f3d13b1234d0403b9df37abd971fad77dcb0b2bd01
+    storybook: ^10.1.11
+  checksum: 974a3f7929eaedcd9337ab609ee562727f8b766a0c99daafb880d7802f79d298b5c71cc3863b0284fde744e32ef3d6eedf47d202153ca011b6722842dea41de8
   languageName: node
   linkType: hard
 
@@ -13173,11 +13173,11 @@ __metadata:
 
 "typescript@patch:typescript@~5.5.4#~builtin<compat/typescript>":
   version: 5.5.4
-  resolution: "typescript@patch:typescript@npm%3A5.5.4#~builtin<compat/typescript>::version=5.5.4&hash=85af82"
+  resolution: "typescript@patch:typescript@npm%3A5.5.4#~builtin<compat/typescript>::version=5.5.4&hash=379a07"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: fc52962f31a5bcb716d4213bef516885e4f01f30cea797a831205fc9ef12b405a40561c40eae3127ab85ba1548e7df49df2bcdee6b84a94bfbe3a0d7eff16b14
+  checksum: e14c87e8bd51f9ac741051a2c3bde75b2a3ab17dee2c50239f7e1a0868673f3b7d4d87684df41a59a8f57c6ddc5d06d65d120764d992441af5de07b98cf9c67b
   languageName: node
   linkType: hard
 
