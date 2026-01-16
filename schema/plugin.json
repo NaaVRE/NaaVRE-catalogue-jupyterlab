@@ -17,5 +17,19 @@
       "default": "/NaaVRE-catalogue-service"
     }
   },
+  "jupyter.lab.menus": {
+    "main": [
+      {
+        "id": "naavre-menu",
+        "label": "NaaVRE",
+        "rank": 10000,
+        "items": [
+          {
+            "command": "open-or-restore-catalogue"
+          }
+        ]
+      }
+    ]
+  },
   "additionalProperties": false
 }
