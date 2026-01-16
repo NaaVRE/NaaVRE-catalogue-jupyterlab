@@ -73,7 +73,7 @@ const extension: JupyterFrontEndPlugin<void> = {
       launcher.add({
         command: CommandIDs.openOrRestore,
         category: 'VRE Components',
-        rank: 0
+        rank: 1
       });
     }
 

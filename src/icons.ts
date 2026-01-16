@@ -5,16 +5,16 @@ import launcherIconSvgStr from '../style/icons/launcher-icon.svg';
 import tabIconSvgStr from '../style/icons/tab-icon.svg';
 
 export const launcherIcon = new LabIcon({
-  name: 'launcher-icon',
+  name: 'naavre-catalogue-launcher-icon',
   svgstr: launcherIconSvgStr
 });
 
 export const tabIcon = new LabIcon({
-  name: 'tab-icon',
+  name: 'naavre-catalogue-tab-icon',
   svgstr: tabIconSvgStr
 });
 
 export const addFileToCatIcon = new LabIcon({
-  name: 'add-to-cat-icon',
+  name: 'naavre-catalogue-add-to-cat-icon',
   svgstr: addFileToCatSvgStr
 });
