@@ -2,6 +2,30 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.1.3
+
+([Full Changelog](https://github.com/NaaVRE/NaaVRE-catalogue-jupyterlab/compare/v0.1.2...e5da4f5956b4a2214cdfe64f73f0eb659b33ad2a))
+
+### Enhancements made
+
+- Add NaaVRE menu entry [#17](https://github.com/NaaVRE/NaaVRE-catalogue-jupyterlab/pull/17) ([@gpelouze](https://github.com/gpelouze))
+
+### Bugs fixed
+
+- Fix #13 Wrong launcher icon [#16](https://github.com/NaaVRE/NaaVRE-catalogue-jupyterlab/pull/16) ([@gpelouze](https://github.com/gpelouze))
+- Fix #14 Cannot upload naavrewf files: `unsupported file type: file` [#15](https://github.com/NaaVRE/NaaVRE-catalogue-jupyterlab/pull/15) ([@gpelouze](https://github.com/gpelouze))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/NaaVRE/NaaVRE-catalogue-jupyterlab/graphs/contributors?from=2026-01-09&to=2026-01-16&type=c))
+
+@gpelouze ([activity](https://github.com/search?q=repo%3ANaaVRE%2FNaaVRE-catalogue-jupyterlab+involves%3Agpelouze+updated%3A2026-01-09..2026-01-16&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.1.2
 
 ([Full Changelog](https://github.com/NaaVRE/NaaVRE-catalogue-jupyterlab/compare/v0.1.1...c657f198b5a3b2e7c32d879bc34a9fd7e0cc2df3))
@@ -32,8 +56,6 @@ See [our definition of contributors](https://github-activity.readthedocs.io/en/l
 ([GitHub contributors page for this release](https://github.com/NaaVRE/NaaVRE-catalogue-jupyterlab/graphs/contributors?from=2026-01-08&to=2026-01-09&type=c))
 
 @gpelouze ([activity](https://github.com/search?q=repo%3ANaaVRE%2FNaaVRE-catalogue-jupyterlab+involves%3Agpelouze+updated%3A2026-01-08..2026-01-09&type=Issues))
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.1.1
 

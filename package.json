@@ -1,6 +1,6 @@
 {
     "name": "@naavre/catalogue-jupyterlab",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "NaaVRE assets catalogue frontend on Jupyter Lab",
     "keywords": [
         "jupyter",
