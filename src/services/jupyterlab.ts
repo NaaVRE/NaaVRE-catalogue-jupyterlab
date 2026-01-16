@@ -69,14 +69,31 @@ export async function downloadAndOpenFile(
   }
 }
 
-function getCataloguePath(fileType: string): string {
-  switch (fileType) {
-    case 'notebook':
+function getFileExtension(fileModel: Contents.IModel): string | undefined {
+  return fileModel.name.split('.').pop();
+}
+
+function getCataloguePath(fileModel: Contents.IModel): string {
+  const extension = getFileExtension(fileModel);
+  switch (extension) {
+    case 'ipynb':
       return 'notebook-files';
     case 'naavrewf':
       return 'workflow-files';
     default:
-      throw `unsupported file type: ${fileType}`;
+      throw `unsupported file extension: ${extension}`;
+  }
+}
+
+function getSerializedContent(fetchedModel: Contents.IModel): string {
+  const extension = getFileExtension(fetchedModel);
+  switch (extension) {
+    case 'ipynb':
+      return JSON.stringify(fetchedModel.content);
+    case 'naavrewf':
+      return fetchedModel.content;
+    default:
+      throw `unsupported file extension: ${extension}`;
   }
 }
 
@@ -108,7 +125,7 @@ export async function uploadFile(
   try {
     const contentsManager = new ContentsManager();
     const fetchedModel = await contentsManager.get(model.path);
-    const cataloguePath = getCataloguePath(model.type);
+    const cataloguePath = getCataloguePath(model);
     if (settings.catalogueServiceUrl === undefined) {
       throw 'catalogue service URL is undefined';
     }
@@ -121,7 +138,8 @@ export async function uploadFile(
     );
 
     // Upload
-    await uploadTextFile(presignRes.url, JSON.stringify(fetchedModel.content));
+    const serializedContent = getSerializedContent(fetchedModel);
+    await uploadTextFile(presignRes.url, serializedContent);
 
     // Create in catalogue
     createFileAsset(`${settings.catalogueServiceUrl}/${cataloguePath}/`, {
@@ -148,10 +166,10 @@ export async function uploadFile(
     Notification.update({
       id: notificationId,
       type: 'error',
-      message: `Could not download file\n${model.name}\n${err}`,
+      message: `Could not upload file\n${model.name}\n${err}`,
       autoClose: 5000
     });
-    console.error('Error downloading or opening file', err);
+    console.error('Error uploading or opening file', err);
     throw err;
   }
 }
