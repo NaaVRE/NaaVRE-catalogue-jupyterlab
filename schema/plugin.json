@@ -17,7 +17,7 @@
       "default": "/NaaVRE-catalogue-service"
     }
   },
-   "jupyter.lab.menus": {
+  "jupyter.lab.menus": {
     "main": [
       {
         "id": "naavre-menu",
