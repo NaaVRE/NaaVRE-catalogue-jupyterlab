@@ -7,7 +7,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import { Asset, AssetKind } from './asset-kinds';
 import { AssetsList, LoadingAssetsList } from './assets-list';
-import { ISharingScope } from '../../types/NaaVRECatalogue/assets';
+import { ISharingScope } from '../../types/NaaVRECatalogue/base-assets';
 import { ListFilters } from './list-filters';
 import { PageNav } from './page-nav';
 import { SettingsContext } from '../../settings';

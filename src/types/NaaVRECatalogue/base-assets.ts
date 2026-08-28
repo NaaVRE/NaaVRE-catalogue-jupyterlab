@@ -32,13 +32,3 @@ export interface IBaseAsset {
   shared_with_scopes?: string[]; // ISharingScope slug
   shared_with_users?: string[]; // User slug
 }
-
-export interface IFileAsset extends IBaseAsset {
-  file: string;
-}
-
-export interface IWorkflowCell extends IBaseAsset, IVersioningMixin {}
-
-export interface INotebookFile extends IFileAsset, IVersioningMixin {}
-
-export interface IWorkflowFile extends IFileAsset, IVersioningMixin {}

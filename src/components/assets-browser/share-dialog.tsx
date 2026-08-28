@@ -21,7 +21,7 @@ import { useSharingScopeCheckboxes } from '../../hooks/use-sharing-scope-checkbo
 import { fetchListFromCatalogue } from '../../utils/catalog';
 import { SettingsContext } from '../../settings';
 import { Asset } from './asset-kinds';
-import { IUser } from '../../types/NaaVRECatalogue/assets';
+import { IUser } from '../../types/NaaVRECatalogue/base-assets';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (

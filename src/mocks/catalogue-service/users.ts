@@ -1,5 +1,5 @@
 import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab';
-import { IUser } from '../../types/NaaVRECatalogue/assets';
+import { IUser } from '../../types/NaaVRECatalogue/base-assets';
 
 export const users: IUser[] = [
   {

@@ -20,6 +20,7 @@ import { UserInfoContext } from '../../contexts/UserInfoContext';
 import { Asset, AssetKind } from './asset-kinds';
 import { DeleteDialog } from './delete-dialog';
 import { downloadAndOpenFile } from '../../services/jupyterlab';
+import { ListItemBuildStatus } from './list-item-build-status';
 
 type Action = {
   title: string;
@@ -124,16 +125,19 @@ function MoreMenu({ actions }: { actions: Action[] }) {
 export function ListItem({
   asset,
   assetKind,
+  showBuildStatus,
+  showVersion,
   fetchAssetsListResponse
 }: {
   asset: Asset;
   assetKind: AssetKind;
+  showBuildStatus: boolean;
+  showVersion: boolean;
   fetchAssetsListResponse: () => void;
 }) {
   const userinfo = useContext(UserInfoContext);
   const jupyterContext = useContext(JupyterContext);
   const userIsOwner = asset.owner === userinfo.preferred_username;
-  const hasVersion = 'version' in asset;
   const isShared =
     (asset.shared_with_users || []).length > 0 ||
     (asset.shared_with_scopes || []).length > 0;
@@ -164,10 +168,15 @@ export function ListItem({
 
   return (
     <TableRow hover>
+      {showBuildStatus && (
+        <TableCell sx={{ width: '1%', whiteSpace: 'nowrap' }}>
+          <ListItemBuildStatus asset={asset} />
+        </TableCell>
+      )}
       <TableCell sx={{ fontWeight: 'bold' }}>{title}</TableCell>
-      {hasVersion && <TableCell>v{asset.version}</TableCell>}
+      {showVersion && <TableCell>v{asset.version}</TableCell>}
       <TableCell>{asset.owner && userIsOwner ? 'me' : asset.owner}</TableCell>
-      <TableCell>
+      <TableCell sx={{ width: '1%', whiteSpace: 'nowrap' }}>
         <>
           {actions
             .filter(a => a.enabled && a.showInline)

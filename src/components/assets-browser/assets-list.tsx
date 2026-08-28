@@ -25,13 +25,17 @@ export function AssetsList({
     return <Alert severity="info">No {assetKind.namePlural} to display.</Alert>;
   }
 
+  const showBuildStatus = assets.some(asset => 'containerization_job' in asset);
+  const showVersion = assets.some(asset => 'version' in asset);
+
   return (
     <Stack spacing={3}>
       <Table>
         <TableHead>
           <TableRow>
+            {showBuildStatus && <TableCell></TableCell>}
             <TableCell>Title</TableCell>
-            {'version' in assets[0] && <TableCell>Version</TableCell>}
+            {showVersion && <TableCell>Version</TableCell>}
             <TableCell>Owner</TableCell>
             <TableCell></TableCell>
           </TableRow>
@@ -43,6 +47,8 @@ export function AssetsList({
               asset={asset}
               assetKind={assetKind}
               fetchAssetsListResponse={fetchAssetsListResponse}
+              showBuildStatus={showBuildStatus}
+              showVersion={showVersion}
             />
           ))}
         </TableBody>
