@@ -1,10 +1,10 @@
+import { ICell } from '../../types/NaaVRECatalogue/workflow-cells';
 import {
   INotebookFile,
-  IWorkflowCell,
   IWorkflowFile
-} from '../../types/NaaVRECatalogue/assets';
+} from '../../types/NaaVRECatalogue/file-asset';
 
-export type Asset = INotebookFile | IWorkflowCell | IWorkflowFile;
+export type Asset = INotebookFile | ICell | IWorkflowFile;
 
 export type AssetKind = {
   name: string;

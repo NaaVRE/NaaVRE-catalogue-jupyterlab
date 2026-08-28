@@ -1,4 +1,4 @@
-import { ISharingScope } from '../types/NaaVRECatalogue/assets';
+import { ISharingScope } from '../types/NaaVRECatalogue/base-assets';
 import { useContext, useEffect, useState } from 'react';
 import { SharingScopesContext } from '../contexts/SharingScopesContext';
 import { ISettings, SettingsContext } from '../settings';

@@ -1,9 +1,9 @@
 import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab';
 
 import {
-  IFileAsset,
   IVersioningMixin
-} from '../../types/NaaVRECatalogue/assets';
+} from '../../types/NaaVRECatalogue/base-assets';
+import { IFileAsset } from '../../types/NaaVRECatalogue/file-asset';
 
 // FIXME: make it realistic
 export const notebooks: (IFileAsset & IVersioningMixin)[] = [

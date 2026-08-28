@@ -1,6 +1,9 @@
 import { NaaVREExternalService } from '@naavre/communicator-jupyterlab';
 import { ceil } from 'lodash';
-import { INotebookFile, IWorkflowFile } from '../types/NaaVRECatalogue/assets';
+import {
+  INotebookFile,
+  IWorkflowFile
+} from '../types/NaaVRECatalogue/file-asset';
 
 export interface ICatalogueListResponse<T> {
   count: number;
