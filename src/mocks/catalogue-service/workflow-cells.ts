@@ -1,6 +1,5 @@
 import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab';
 
-
 import { ICell } from '../../types/NaaVRECatalogue/workflow-cells';
 
 export const cells: ICell[] = [

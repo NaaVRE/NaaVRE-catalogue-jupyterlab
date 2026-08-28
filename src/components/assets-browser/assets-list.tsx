@@ -25,8 +25,8 @@ export function AssetsList({
     return <Alert severity="info">No {assetKind.namePlural} to display.</Alert>;
   }
 
-  const showBuildStatus = assets.some(asset => 'containerization_job' in asset)
-  const showVersion = assets.some(asset => 'version' in asset)
+  const showBuildStatus = assets.some(asset => 'containerization_job' in asset);
+  const showVersion = assets.some(asset => 'version' in asset);
 
   return (
     <Stack spacing={3}>

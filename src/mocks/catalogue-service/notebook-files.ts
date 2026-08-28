@@ -1,8 +1,6 @@
 import { INaaVREExternalServiceResponse } from '@naavre/communicator-jupyterlab';
 
-import {
-  IVersioningMixin
-} from '../../types/NaaVRECatalogue/base-assets';
+import { IVersioningMixin } from '../../types/NaaVRECatalogue/base-assets';
 import { IFileAsset } from '../../types/NaaVRECatalogue/file-asset';
 
 // FIXME: make it realistic

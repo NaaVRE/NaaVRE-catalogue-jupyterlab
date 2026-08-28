@@ -88,7 +88,7 @@ export function ListItemBuildStatus({
   sx?: SxProps;
 }) {
   if (!('containerization_job' in asset)) {
-    return <></>
+    return <></>;
   }
 
   const [job, setJob] = useState<IContainerizationJob | null | undefined>(
