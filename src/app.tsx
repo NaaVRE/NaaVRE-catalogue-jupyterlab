@@ -6,9 +6,7 @@ import { createSyncedMemoryHistory } from './url-hash-sync';
 export const BASEPATH = 'naavre-catalogue';
 export const URL_RE = new RegExp(String.raw`#\/${BASEPATH}($|\/)`);
 
-const { history, setFocused } = createSyncedMemoryHistory(
-  `/${BASEPATH}`
-);
+const { history, setFocused } = createSyncedMemoryHistory(`/${BASEPATH}`);
 
 const router = createRouter({
   routeTree,
