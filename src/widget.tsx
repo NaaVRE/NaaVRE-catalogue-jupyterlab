@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactWidget } from '@jupyterlab/apputils';
 import { ThemeProvider } from '@mui/material/styles';
 
-import { App } from './app';
+import { App, setFocused } from './app';
 import { ISettings, SettingsContext } from './settings';
 import { theme } from './theme';
 import { IJupyterContext, JupyterContext } from './contexts/JupyterContext';
@@ -23,6 +23,14 @@ export class CatalogueWidget extends ReactWidget {
   updateSettings(settings: Partial<ISettings>) {
     this.settings = { ...this.settings, ...settings };
     this.update();
+  }
+
+  protected onActivateRequest(): void {
+    setFocused(true);
+  }
+
+  protected onDeactivateRequest(): void {
+    setFocused(false);
   }
 
   render() {

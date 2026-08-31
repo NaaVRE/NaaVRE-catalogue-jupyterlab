@@ -13,6 +13,7 @@ import { addFileToCatIcon, launcherIcon, tabIcon } from './icons';
 import { ISettings } from './settings';
 import { IDocumentManager } from '@jupyterlab/docmanager';
 import { uploadFile } from './services/jupyterlab';
+import { URL_RE } from './app';
 
 export namespace CommandIDs {
   export const openOrRestore = 'open-or-restore-catalogue';
@@ -83,7 +84,7 @@ const extension: JupyterFrontEndPlugin<void> = {
       caption: 'Open the catalogue of NaaVRE assets from the URL',
       icon: args => (args['isPalette'] ? undefined : launcherIcon),
       execute: _args => {
-        if (router.current.hash.match(/^#\/naavre-catalogue/)) {
+        if (router.current.hash.match(URL_RE)) {
           app.commands.execute(CommandIDs.openOrRestore).then();
         }
       }

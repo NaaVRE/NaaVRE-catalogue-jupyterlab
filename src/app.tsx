@@ -1,15 +1,19 @@
 import React, { StrictMode } from 'react';
-import {
-  createHashHistory,
-  createRouter,
-  RouterProvider
-} from '@tanstack/react-router';
+import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
+import { createSyncedMemoryHistory } from './url-hash-sync';
+
+export const BASEPATH = 'naavre-catalogue';
+export const URL_RE = new RegExp(String.raw`#\/${BASEPATH}($|\/)`);
+
+const { history, setFocused } = createSyncedMemoryHistory(
+  `/${BASEPATH}`
+);
 
 const router = createRouter({
   routeTree,
-  history: createHashHistory(),
-  basepath: 'naavre-catalogue'
+  history,
+  basepath: BASEPATH
 });
 
 // Register the router instance for type safety
@@ -21,6 +25,8 @@ declare module '@tanstack/react-router' {
     router: typeof router;
   }
 }
+
+export { setFocused };
 
 export function App() {
   return (
