@@ -60,6 +60,7 @@
         "storybook:dev": "storybook dev -p 6006",
         "build-storybook": "storybook build"
     },
+    "packageManager": "yarn@3.5.0",
     "dependencies": {
         "@emotion/react": "^11.14.0",
         "@emotion/styled": "^11.14.1",
